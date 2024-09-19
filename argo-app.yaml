@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-team-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: cyclops
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apps
+    repoURL: https://github.com/cyclops-ui/gitops-starter
+    targetRevision: main
+  syncPolicy:
+    automated: {}

@@ -1,0 +1,20 @@
+apiVersion: cyclops-ui.com/v1alpha1
+kind: Module
+metadata:
+  name: other-app
+  namespace: cyclops
+spec:
+  template:
+    path: app-template
+    repo: https://github.com/cyclops-ui/templates
+    version: immutable-template
+  values:
+    general:
+      environment: { }
+      image: nginx
+      version: 1.14.2
+    networking:
+      expose: true
+      port: 80
+      type: ClusterIP
+    scaling:

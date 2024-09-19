@@ -1,0 +1,14 @@
+apiVersion: cyclops-ui.com/v1alpha1
+kind: Module
+metadata:
+  name: my-api-cache
+  namespace: cyclops
+spec:
+  template:
+    path: redis
+    repo: https://github.com/cyclops-ui/templates
+    version: main
+  values:
+    replication:
+      enable: true
+    version: "6.0"

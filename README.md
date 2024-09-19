@@ -1,1 +1,1 @@
-# gitops-starter
+# Cyclops GitOps starter
