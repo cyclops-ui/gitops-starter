@@ -28,6 +28,9 @@ Since a Module can be defined through a manifest, it can be stored on a git repo
 
 The picture below shows the hierarchy of resources inside the cluster with the setup.
 
+![app hierarchy](https://github.com/user-attachments/assets/e0716c9e-bcc9-4312-a6a9-e34fc867e463)
+
+
 In the root of the hierarchy, there is the `my-team-apps` Argo application defined in the `argo-app.yaml` file in the root of the repo. The application deploy everything from the `https://github.com/cyclops-ui/gitops-starter` repo (this one) under path `apps`.
 
 As mentioned, that folder contains three module definitions separated into respective files. When the ArgoCD controller syncs those Modules into the cluster, the Cyclops controller takes over and turns those Modules into other Kubernetes resources like Deployment, Services, StatefulSets, or whatever is defined in the Helm chart referenced by the Module and its values.
@@ -44,15 +47,23 @@ kubectl apply -f argo-app.yaml
 
 You can now see your newly created Argo application in your ArgoCD UI:
 
+<img width="1506" alt="argo app" src="https://github.com/user-attachments/assets/f70e045b-bc8f-44aa-ad5a-e0dbf39dbcc4">
+
 All of the Modules are also visible in the Cyclops UI:
+
+<img width="1503" alt="cyclops modules" src="https://github.com/user-attachments/assets/809d8fb9-9a4a-4264-a8a0-610d596b032a">
 
 You can now check all of the resources created from a Module through the Cyclops UI. You are also free to update app configuration through Cyclops.
 
 When updating a Module through Cyclops, you could introduce a diff in ArgoCD. For example, while updating replicas through Cyclops, Argo might report it as in the image below
 
+<img width="1507" alt="argo diff" src="https://github.com/user-attachments/assets/a41bcfc9-7f96-4055-b88a-012e4ba5d751">
+
 To avoid this, you can simply **remove the field** you want to edit through the UI from the **Module manifest** in git.
 
 If you want to restrict edits of any fields explicitly, you can mark them as `immutable` in your helm chart schema. An example of a template with immutable fields is used for the `other-app` you have already deployed.
+
+<img width="1509" alt="immutable" src="https://github.com/user-attachments/assets/c013738b-cd4d-48bc-b53d-4e936cf6f640">
 
 In the image above is the edit screen of the `other-app`, and fields for image and version cannot be updated and should be updated through the GitOps workflow.
 
