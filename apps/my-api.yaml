@@ -18,4 +18,4 @@ spec:
       port: 80
       type: ClusterIP
     scaling:
-      replicas: 1
+      replicas: 3
